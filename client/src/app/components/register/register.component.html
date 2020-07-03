@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-s12">
+      <div class="card">
+        <div class="card-content">
+          <form #registerForm="ngForm" (ngSubmit)="addUser(registerForm)">
+            <div class="row">
+              <div class="input-field col s12">
+                <input class="validate" type="text" name="name" [(ngModel)]="loginService.selectedUser.name" placeholder="Name" required>
+              </div>
+              <div class="input-field col s12">
+                <input class="validate" type="email" name="email" [(ngModel)]="loginService.selectedUser.email" placeholder="Email" required>
+              </div>
+              <div class="input-field col s12">
+                <input class="validate" type="password" name="password" [(ngModel)]="loginService.selectedUser.password" placeholder="Password" required>
+              </div>
+              <div class="input-field col s12">
+                <input class="validate" type="password" name="confirm_password" [(ngModel)]="loginService.selectedUser.confirm_password" placeholder="Confirm Password" required>
+              </div>
+              <div class="card-action">
+                <div class="input-field col s12">
+                  <button class="btn">SignUp</button>
+                  <a class="btn" [routerLink]="['']">Back</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
