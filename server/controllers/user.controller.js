@@ -44,7 +44,7 @@ usersCtrl.signin = async (req, res) => {
   })
   .then((validation)=>{
     if(validation){
-      jwt.sign({ user:email },'colapp',{expiresIn: 60},(err,token)=>{
+      jwt.sign({ user:email },'colapp',{expiresIn: 60*10},(err,token)=>{
         res.json({
           success: true,
           status: "Ok, logged",
