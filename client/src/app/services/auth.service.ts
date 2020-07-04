@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { LoginService } from './login.service';
+import { Http, Response, Headers } from '@angular/http';
 
 @Injectable()
-export class AuthService implements CanActivate {
+export class AuthService{
 
-  constructor(private loginService: LoginService, private router: Router) { }
+
+  readonly URL_API = 'http://localhost:3000/api/users/verifySession'
+  headers = new Headers()
+  constructor(private http: Http, private router: Router) {
+    this.headers.append("Content-Type", "application/json")
+    this.headers.append("token", JSON.parse(localStorage.getItem("token")))
+  }
 
   canActivate() {
-    if (this.loginService.isAuthenticated()) {
-      return true;
-    }
-    this.router.navigate([""]);
-    return false;
+    let isLogged;
+    this.http.get(this.URL_API, { headers: this.headers })
+    .map((response: Response) => response.json())
+    .subscribe(res =>{
+      isLogged = res.success
+      if(!isLogged) this.router.navigate(["/"])
+    })
   }
 
 }

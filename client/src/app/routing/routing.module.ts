@@ -11,7 +11,7 @@ import { RegisterComponent } from '../components/register/register.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'users/signup', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'dashboard/student', component: StudentsComponent },
   { path: 'dashboard/course', component: CoursesComponent }
 ];

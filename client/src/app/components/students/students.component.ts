@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from '../../services/auth.service';
 import { StudentService } from '../../services/student.service';
 import { CourseService } from '../../services/course.service';
 import { NgForm } from '@angular/forms';
@@ -17,9 +17,10 @@ export class StudentsComponent implements OnInit {
 
   courses: Course[];
 
-  constructor(private studentService: StudentService, private courseService: CourseService) { }
+  constructor(private studentService: StudentService, private courseService: CourseService,private auth : AuthService ) { }
 
   ngOnInit() {
+    this.auth.canActivate()
     this.getCourses();
     this.getStudents();
   }

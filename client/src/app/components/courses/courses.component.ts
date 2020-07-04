@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { NgForm } from '@angular/forms';
 import { Course } from '../../models/course';
+import { AuthService } from '../../services/auth.service';
+
 
 declare var $: any;
 declare var M: any;
@@ -13,10 +15,11 @@ declare var M: any;
 })
 export class CoursesComponent implements OnInit {
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, private auth : AuthService ) { }
 
   ngOnInit() {
     this.getCourses();
+    this.auth.canActivate()
   }
 
   addCourse(form: NgForm) {
@@ -48,8 +51,6 @@ export class CoursesComponent implements OnInit {
   getCourses() {
     this.courseService.getCourses()
       .subscribe((data) => {
-        console.log(data);
-
         this.courseService.coursesArray = data as Course[]
       });
   }
